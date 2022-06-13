@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+STATICFILES_DIRS=["/Users/kajetan/Documents/Social_app/static"]
+
 
 # Application definition
 
