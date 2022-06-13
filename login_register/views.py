@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 
@@ -13,6 +14,8 @@ def login_user(request):
         if user is not None:
             login(request,user)
             return redirect('home_page')
+        else:
+            return redirect('login_page')
 
     return render(request,'login.html',{})
 
@@ -20,6 +23,8 @@ def logout_user(request):
     logout(request)
     return redirect('login_page')
 
+def register_user(request):
 
-def register_view(request):
     return render(request,'register.html',{})
+
+
