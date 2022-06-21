@@ -1,6 +1,8 @@
+import email
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
-from .forms import User_creation
+from django.contrib.auth.models import User
+
 
 # Create your views here.
 
@@ -24,16 +26,16 @@ def logout_user(request):
     return redirect('login_page')
 
 def register_user(request):
-    form = User_creation()
     if request.method == 'POST':
-        form = User_creation(request.POST)
-        if form.is_valid():
-            user=form.save(commit=False)
-            user.save()
-            if user is not None:
-                login(request,user)
-                return redirect('home_page')
+        username = request.POST['username']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+        if password1 == password2:
+            newUser = User.objects.create_user(username=username,email=None,password=password1)
+            newUser.save()
+            return redirect('login_page')
 
-    return render(request,'register.html',{'forma_register':form})
+    return render(request,'register.html',{})
+
 
 

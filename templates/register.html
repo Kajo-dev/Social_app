@@ -10,14 +10,16 @@
 </head>
 <body>
     <h1>register_page</h1>
-    <form method="POST"> {%csrf_token%}
+    <form method="POST"> 
+        {%csrf_token%}
         <div id="dane_rejestracja">
-            <label>Username: </label> {{forma_register.username}}</br>
-            <label>Password: </label> {{forma_register.password1}}</br>
-            <label>Conf Password: </label> {{forma_register.password2}}
-            
+            <label>Username: </label> <input type="text" name="username">
+            <label>Password: </label> <input type="password" name="password1">
+            <label>Conf Password: </label> <input type="password" name="password2">
+            <input type="submit" value="Register">
         </div>
-        <input type="submit" value="Register">
+               
     </form>
+    <p><a href="{%url 'login_page'%}">login</a></p>
 </body>
 </html> 
