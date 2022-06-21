@@ -1,7 +1,13 @@
-import email
+from curses.ascii import isdigit
+from decimal import Decimal
+from numbers import Number
+from django.forms import IntegerField
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.core.exceptions import *
 
 
 # Create your views here.
@@ -21,21 +27,42 @@ def login_user(request):
 
     return render(request,'login.html',{})
 
+
+@login_required(login_url='login_in')
 def logout_user(request):
     logout(request)
     return redirect('login_page')
 
 def register_user(request):
+    error_list=[]
     if request.method == 'POST':
         username = request.POST['username']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
-        if password1 == password2:
-            newUser = User.objects.create_user(username=username,email=None,password=password1)
-            newUser.save()
-            return redirect('login_page')
 
-    return render(request,'register.html',{})
+        if isdigit(username[0]):
+            error_list.append('The first character must be a letter')
+        if len(username)<2:
+            error_list.append('Username is to short')
+        if len(password1)<6:
+            error_list.append('Password is to short')
+        if password1 != password2:
+            error_list.append('Passwords are not the same')
+        if len(error_list)==0:
+            try:
+                newUser = User.objects.create_user(username=username,email=None,password=password1)
+                newUser.save()
+                return redirect('login_page')
+            except:
+                messages.error(request,'Username already exists')
+
+    errory = {
+        'lista':error_list
+    }
+
+            
+
+    return render(request,'register.html',errory)
 
 
 
