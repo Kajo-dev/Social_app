@@ -13,12 +13,28 @@
 
     <a id="logout_link" href="{%url 'logout_page'%}">Logout</a>
 
+    <form method="post"> {%csrf_token%}
+        <div id="create_post">
+            <input type="text" name="tytul">
+            <input type="text" name="zawartosc">
+            <input type="submit" value="Create Post">
+        </div>
+    </form> 
+
     <div class="posty">
         {%for post in posty%}
             <label>Tytul: </label>{{post.tytul}} </br>
             <label>Autor: </label>{{post.autor}} </br>
             <label>Zawartosc: </label>{{post.zawartosc}} </br>
         {%endfor%}
+    </div>
+
+    <div class="errory">
+        {%if messages%}
+            {%for message in messages%}
+                <label class="error_mes">{{message}}</label></br>
+            {%endfor%}
+        {%endif%}
     </div>
 </body>
 </html>

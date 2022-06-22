@@ -8,8 +8,7 @@ class Post(models.Model):
     )
     autor = models.ForeignKey(
         User,
-        on_delete=models.CASCADE
-
+        on_delete=models.CASCADE,
     )
     zawartosc = models.TextField(
         default="Text there",
