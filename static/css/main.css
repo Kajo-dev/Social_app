@@ -1,3 +1,9 @@
 body{
-    background-color: rgb(85, 85, 85);
+    background-color: wheat;
+}
+h1{
+    color: red;
+}
+.posty label{
+    color: red;
 }
