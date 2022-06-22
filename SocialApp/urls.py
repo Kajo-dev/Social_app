@@ -26,6 +26,6 @@ urlpatterns = [
     path('logout/',login_register_views.logout_user,name='logout_page'),
     path('register/',login_register_views.register_user,name='register_page'),
     
-    path('home/',main_home_views.home_view,name='home_page'),
+    path('',main_home_views.home_view,name='home_page'),
     
 ]

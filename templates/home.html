@@ -11,6 +11,14 @@
 <body>
     <h1>home_view</h1>
 
-    <a href="{%url 'logout_page'%}">Logout</a>
+    <a id="logout_link" href="{%url 'logout_page'%}">Logout</a>
+
+    <div class="posty">
+        {%for post in posty%}
+            <label>Tytul: </label>{{post.tytul}} </br>
+            <label>Autor: </label>{{post.autor}} </br>
+            <label>Zawartosc: </label>{{post.zawartosc}} </br>
+        {%endfor%}
+    </div>
 </body>
 </html>

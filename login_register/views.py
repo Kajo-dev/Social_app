@@ -1,7 +1,4 @@
 from curses.ascii import isdigit
-from decimal import Decimal
-from numbers import Number
-from django.forms import IntegerField
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
@@ -28,7 +25,7 @@ def login_user(request):
     return render(request,'login.html',{})
 
 
-@login_required(login_url='login_in')
+@login_required(login_url='login_page')
 def logout_user(request):
     logout(request)
     return redirect('login_page')
