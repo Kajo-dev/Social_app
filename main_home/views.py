@@ -1,4 +1,5 @@
 from enum import auto
+from unicodedata import category
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import Post
@@ -26,4 +27,9 @@ def home_view(request):
     return render(request,'home.html',post_wyswietlanie)
 
 def profil_page(request):
-    return render(request,'profil.html',{})
+    posty=Post.objects.filter(autor=request.user)
+    
+    post_wyswietlanie={
+        'posty':posty
+    }
+    return render(request,'profil.html',post_wyswietlanie)
