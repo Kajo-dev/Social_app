@@ -11,7 +11,9 @@
 <body>
     <h1>home_view</h1>
 
-    <a id="logout_link" href="{%url 'logout_page'%}">Logout</a>
+    <a  href="{%url 'logout_page'%}">Logout</a>
+    <br>
+    <a  href="{%url 'profil_page'%}">My profil</a>
 
     <form method="post"> {%csrf_token%}
         <div id="create_post">

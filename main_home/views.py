@@ -18,11 +18,12 @@ def home_view(request):
         else:
             messages.error(request,'Is to short')
 
-
-
     #wyswietlanie wszytkich postów w homepage 
     posty=Post.objects.all()
     post_wyswietlanie={
         'posty':posty
     }
     return render(request,'home.html',post_wyswietlanie)
+
+def profil_page(request):
+    return render(request,'profil.html',{})

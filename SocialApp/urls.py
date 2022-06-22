@@ -19,6 +19,7 @@ from login_register import views as login_register_views
 from main_home import views as main_home_views
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 
@@ -27,5 +28,6 @@ urlpatterns = [
     path('register/',login_register_views.register_user,name='register_page'),
     
     path('',main_home_views.home_view,name='home_page'),
+    path('profil/',main_home_views.profil_page,name='profil_page'),
     
 ]
